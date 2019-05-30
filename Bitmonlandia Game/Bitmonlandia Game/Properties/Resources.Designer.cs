@@ -73,10 +73,30 @@ namespace Bitmonlandia_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap acuaticoDef {
+            get {
+                object obj = ResourceManager.GetObject("acuaticoDef", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bellsprout {
             get {
                 object obj = ResourceManager.GetObject("bellsprout", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Bit {
+            get {
+                object obj = ResourceManager.GetObject("Bit", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -86,6 +106,16 @@ namespace Bitmonlandia_Game.Properties {
         internal static System.Drawing.Bitmap charmeleon {
             get {
                 object obj = ResourceManager.GetObject("charmeleon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap desiertoDef {
+            get {
+                object obj = ResourceManager.GetObject("desiertoDef", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -111,6 +141,35 @@ namespace Bitmonlandia_Game.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream musicaMenu {
+            get {
+                return ResourceManager.GetStream("musicaMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nieveDef {
+            get {
+                object obj = ResourceManager.GetObject("nieveDef", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nieveDef2 {
+            get {
+                object obj = ResourceManager.GetObject("nieveDef2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap pidgeotto__1_ {
@@ -126,6 +185,36 @@ namespace Bitmonlandia_Game.Properties {
         internal static System.Drawing.Bitmap sudowudoo {
             get {
                 object obj = ResourceManager.GetObject("sudowudoo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vegDef {
+            get {
+                object obj = ResourceManager.GetObject("vegDef", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vegetacionDef {
+            get {
+                object obj = ResourceManager.GetObject("vegetacionDef", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap volcanDef {
+            get {
+                object obj = ResourceManager.GetObject("volcanDef", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

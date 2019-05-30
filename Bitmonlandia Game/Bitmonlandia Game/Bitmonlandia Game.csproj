@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Bitmonlandia_Game.FormProgram</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,16 +49,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bitmon.cs" />
+    <Compile Include="Dorvalo.cs" />
+    <Compile Include="Doti.cs" />
+    <Compile Include="Ent.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Opciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Opciones.Designer.cs">
+      <DependentUpon>Form_Opciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProgram.cs" />
+    <Compile Include="Gofue.cs" />
+    <Compile Include="Johto.cs" />
+    <Compile Include="MapasConsola.cs" />
+    <Compile Include="Paraiso.cs" />
+    <Compile Include="PictureMapa.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Simulador.cs" />
+    <Compile Include="Taplan.cs" />
+    <Compile Include="Terreno.cs" />
+    <Compile Include="TerrenosConsola.cs" />
+    <Compile Include="TiposBitmons.cs" />
+    <Compile Include="Wetar.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Opciones.resx">
+      <DependentUpon>Form_Opciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -77,6 +107,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Resources\04B_30__.TTF" />
+    <EmbeddedResource Include="Resources\Bit.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -98,6 +129,30 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\sudowudoo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\musicaMenu.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\acuaticoDef.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\desiertoDef.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\nieveDef.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\vegetacionDef.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\volcanDef.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\nieveDef2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\vegDef.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
