@@ -15,7 +15,6 @@ namespace Bitmonlandia_Game
     public partial class Form1 : Form
 
     {
-        
         SoundPlayer player = new SoundPlayer(Bitmonlandia_Game.Properties.Resources.musicaMenu);
 
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
@@ -24,16 +23,16 @@ namespace Bitmonlandia_Game
         private PrivateFontCollection fonts = new PrivateFontCollection();
 
         Font fuente;
-
+        
         public Form1()
         {
             InitializeComponent();
-            player.Play();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+            player.Play();
             byte[] fontData = Properties.Resources._04B_30__;
             IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
             System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
@@ -86,21 +85,22 @@ namespace Bitmonlandia_Game
             frmOpciones.configuracion3 = config3;
 
 
-            var result=frmOpciones.ShowDialog(this);
+            var opciones=frmOpciones.ShowDialog(this);
+            int configSeleccionada = frmOpciones.configSeleccionada;
+            Johto regionSeleccionada = frmOpciones.configSeleccionadaGlobal;
+            int mesesSimulacion = frmOpciones.meses;
 
-            if (result == DialogResult.OK)
+            if (frmOpciones.valorRetorno == "Continue")
             {
-                string val = frmOpciones.valorRetorno;            //values preserved after close
-                                                                 //Do something here with these values
+                Simulador simulador = new Simulador(configSeleccionada, regionSeleccionada, mesesSimulacion);
+                Form_Simulacion simulacion = new Form_Simulacion();
+                simulacion.region = regionSeleccionada;
+                simulacion.mesesSimulacion = mesesSimulacion;
+                simulacion.config = configSeleccionada;
+                simulacion.simulador = simulador;
 
-                MessageBox.Show(val);
-
+                var sim = simulacion.ShowDialog(this);
             }
-
-
-
-
         }
-
     }
 }

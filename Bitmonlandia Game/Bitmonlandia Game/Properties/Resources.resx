@@ -145,25 +145,37 @@
   <data name="musicaMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\musicaMenu.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="acuaticoDef" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\acuaticoDef.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bellsproutFoto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bellsproutFoto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="desiertoDef" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\desiertoDef.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="charmeleonFoto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\charmeleonFoto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="nieveDef" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\nieveDef.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="dittoFoto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dittoFoto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="nieveDef2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\nieveDef2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="magikarpFoto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\magikarpFoto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="vegDef" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\vegDef.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pidgeottoFoto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pidgeottoFoto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="vegetacionDef" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\vegetacionDef.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sudoFoto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sudoFoto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="volcanDef" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\volcanDef.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="acuaticoDefinitivo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\acuaticoDefinitivo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="desiertoDefinitivo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\desiertoDefinitivo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nieveDefinitivo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nieveDefinitivo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vegetacionDefinitivo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vegetacionDefinitivo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="volcanDefinitivo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\volcanDefinitivo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

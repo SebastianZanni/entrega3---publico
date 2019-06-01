@@ -7,10 +7,12 @@ using System.Windows.Forms;
 
 namespace Bitmonlandia_Game
 {
-    public class PictureMapa:PictureBox
+    public class PictureMapa : PictureBox
     {
         public string TipoTerreno { get; set; }
         public int numBitomns { get; set; }
+        public int fila {get;set; }
+        public int columna { get; set; }
 
         public void Agrandar()
         {

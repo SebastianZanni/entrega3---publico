@@ -59,6 +59,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Bitmons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Bitmons.Designer.cs">
+      <DependentUpon>Form_Bitmons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Estadisticas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Estadisticas.Designer.cs">
+      <DependentUpon>Form_Estadisticas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Opciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,26 +78,65 @@
       <DependentUpon>Form_Opciones.cs</DependentUpon>
     </Compile>
     <Compile Include="FormProgram.cs" />
+    <Compile Include="Form_Simulacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Simulacion.Designer.cs">
+      <DependentUpon>Form_Simulacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gofue.cs" />
     <Compile Include="Johto.cs" />
-    <Compile Include="MapasConsola.cs" />
+    <Compile Include="panelBitmonsConfig2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="panelBitmonsConfig2.Designer.cs">
+      <DependentUpon>panelBitmonsConfig2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panelBitmonsConfig1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="panelBitmonsConfig1.Designer.cs">
+      <DependentUpon>panelBitmonsConfig1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panelBitmonsConfig3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="panelBitmonsConfig3.Designer.cs">
+      <DependentUpon>panelBitmonsConfig3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Paraiso.cs" />
     <Compile Include="PictureMapa.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Simulador.cs" />
     <Compile Include="Taplan.cs" />
     <Compile Include="Terreno.cs" />
-    <Compile Include="TerrenosConsola.cs" />
     <Compile Include="TiposBitmons.cs" />
     <Compile Include="Wetar.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_Bitmons.resx">
+      <DependentUpon>Form_Bitmons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Estadisticas.resx">
+      <DependentUpon>Form_Estadisticas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_Opciones.resx">
       <DependentUpon>Form_Opciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Simulacion.resx">
+      <DependentUpon>Form_Simulacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panelBitmonsConfig2.resx">
+      <DependentUpon>panelBitmonsConfig2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panelBitmonsConfig1.resx">
+      <DependentUpon>panelBitmonsConfig1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panelBitmonsConfig3.resx">
+      <DependentUpon>panelBitmonsConfig3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -134,25 +185,40 @@
     <EmbeddedResource Include="Resources\musicaMenu.wav" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\acuaticoDef.gif" />
+    <EmbeddedResource Include="Resources\charmeleonSmall.gif" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\desiertoDef.gif" />
+    <EmbeddedResource Include="Resources\sudoFoto.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\nieveDef.gif" />
+    <EmbeddedResource Include="Resources\pidgeottoFoto.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\vegetacionDef.gif" />
+    <EmbeddedResource Include="Resources\magikarpFoto.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\volcanDef.gif" />
+    <EmbeddedResource Include="Resources\dittoFoto.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\nieveDef2.gif" />
+    <EmbeddedResource Include="Resources\charmeleonFoto.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\vegDef.gif" />
+    <EmbeddedResource Include="Resources\bellsproutFoto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\desiertoDefinitivo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\acuaticoDefinitivo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\vegetacionDefinitivo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\nieveDefinitivo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\volcanDefinitivo.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -136,7 +136,7 @@
             this.Name = "Form_Opciones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bitmonlandia";
-            this.Load += new System.EventHandler(this.Form_meses_simulacion_Load);
+            this.Load += new System.EventHandler(this.Form_Opciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

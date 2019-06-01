@@ -3,9 +3,15 @@ C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\bin\Debug\Bitmo
 C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\bin\Debug\Bitmonlandia Game.pdb
 C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia Game.csprojAssemblyReference.cache
 C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia_Game.Form1.resources
+C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia_Game.Form_Bitmons.resources
+C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia_Game.Form_Opciones.resources
+C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia_Game.Form_Simulacion.resources
+C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia_Game.panelBitmonsConfig2.resources
+C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia_Game.panelBitmonsConfig1.resources
+C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia_Game.panelBitmonsConfig3.resources
 C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia_Game.Properties.Resources.resources
 C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia Game.csproj.GenerateResource.cache
 C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia Game.csproj.CoreCompileInputs.cache
 C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia Game.exe
 C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia Game.pdb
-C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia_Game.Form_Opciones.resources
+C:\Users\Win7VM\source\repos\Bitmonlandia Game\Bitmonlandia Game\obj\Debug\Bitmonlandia_Game.Form_Estadisticas.resources

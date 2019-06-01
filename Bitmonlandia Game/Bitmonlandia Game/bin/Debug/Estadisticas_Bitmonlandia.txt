@@ -1,0 +1,54 @@
+ESTADISTICAS SIMULACION
+
+
+Tiempo vida promedio de Bitmon: 0,68 meses
+***************************************
+
+
+Tiempo vida promedio por especie Bitmon:
+***************************************
+Dorvalo: 0,2 meses
+Doti: 1 meses
+Ent: 1 meses
+Gofue: 1 meses
+Taplan: 1 meses
+Wetar: 1 meses 
+
+
+
+Tasa bruta de natalidad por cada especie:
+****************************************
+Dorvalo: 24 hijos por cada 100 Dorvalo
+Doti: 100 hijos por cada 100 Doti
+Ent: 100 hijos por cada 100 Ent
+Gofue: 75 hijos por cada 100 Gofue
+Taplan: 78,57 hijos por cada 100 Taplan
+Wetar: 100 hijos por cada 100 Wetar
+
+
+Tasa bruta de mortalidad. 9,68 por cada 100 Bitmons
+***************************************
+
+
+Cantidad hijos promedio por cada especie:
+****************************************
+Dorval: 0,24
+Doti: 1
+Ent: 1
+Gofue: 0,75
+Taplan: 0,79
+Wetar: 1
+
+
+
+Especies exintas:
+****************
+
+Poblacion de Bitmons en Bithalla:
+****************************************
+Dorval: 1 --> Equivalentes al: 16,7 %
+Doti: 0 --> Equivalentes al: 0 %
+Ent: 0 --> Equivalentes al: 0 %
+Gofue: 2 --> Equivalentes al: 33,3 %
+Taplan: 3 --> Equivalentes al: 50 %
+Wetar: 0 --> Equivalentes al: 0 %

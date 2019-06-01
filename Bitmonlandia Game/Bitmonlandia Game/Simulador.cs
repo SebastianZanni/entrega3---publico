@@ -5,21 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Bitmonlandia_Game
 {
-    class Simulador
+    public class Simulador
     {
         public int dimensionMapa;
         public Johto region;
-        //public bool flagBlink = false;
-        public MapasConsola mapaconsola;
-        public TerrenosConsola terrenosconsola;
         public int mesesSimulacion;
         Random random = new Random();
         Paraiso paraiso = new Paraiso();
-
-
+       
         public Simulador(int dimensionMapa, Johto region, int mesesSimulacion)
         {
             this.dimensionMapa = dimensionMapa;
@@ -27,96 +24,17 @@ namespace Bitmonlandia_Game
             this.mesesSimulacion = mesesSimulacion;
         }
 
-        public void comenzarSimulacion()
+        public int bitmonsIniciales(Form_Simulacion sender)
         {
-            int configMapa = dimensionMapa;
-            int topTerreno = 0;
-            int leftTerreno = 0;
-            int topDatosTerreno = 0;
-            int leftDatosTerreno = 0;
+            sender.cantidadVivosInicial = actualizarCantidadBitmonsMes();
 
-            Console.Clear();
+            return sender.cantidadVivosInicial;
+        }
 
-            //Instancia clases
-            MapasConsola mapaconsola = new MapasConsola();
-            this.mapaconsola = mapaconsola;
-            TerrenosConsola terrenosconsola = new TerrenosConsola();
-            this.terrenosconsola = terrenosconsola;
-
-            //Configura Ancho y Alto del Mapa
-            Console.WindowWidth = mapaconsola.anchoMapas[configMapa];
-            Console.WindowHeight = mapaconsola.altoMapas[configMapa];
-            Console.SetWindowPosition(0, 0);
-
-            //Escribe el Mapa
-            Console.WriteLine(mapaconsola.mapas[configMapa]);
-            int indiceTerreno = 0;
-            string tipoTerreno = "";
-            foreach (Terreno terreno in region.mapaRegion)
-            {
-                //Imprime todos los terrenos en el mapa ASCII.
-                tipoTerreno = terreno.getTipo();
-                Console.BackgroundColor = terrenosconsola.getBackGroundColor(tipoTerreno);
-                Console.ForegroundColor = terrenosconsola.getForeGroundColor(tipoTerreno);
-                topTerreno = mapaconsola.getTopTerreno(configMapa, indiceTerreno);
-                leftTerreno = mapaconsola.getLeftTerreno(configMapa, indiceTerreno);
-
-                foreach (string line in terrenosconsola.getAsciiTerreno(tipoTerreno))
-                {
-                    Console.SetCursorPosition(leftTerreno, topTerreno);
-                    Console.Write(line);
-                    topTerreno++;
-                }
-                Console.ResetColor();
-
-
-                //Escribe cantidad de bitmons en terreno por tipo de bitmon.
-
-                leftDatosTerreno = mapaconsola.getLeftDatosTerreno(configMapa, indiceTerreno, 0);
-                // Console.BackgroundColor = ConsoleColor.Gray;
-                //Console.ForegroundColor = ConsoleColor.Red;
-                topDatosTerreno = mapaconsola.getTopDatosTerreno(configMapa, indiceTerreno, 0);
-                Console.SetCursorPosition(leftDatosTerreno, topDatosTerreno);
-                Console.Write(padDatos("Dor:" + terreno.getNumTipoBitmon("Dorvalo")));
-
-
-                topDatosTerreno = mapaconsola.getTopDatosTerreno(configMapa, indiceTerreno, 1);
-                Console.SetCursorPosition(leftDatosTerreno, topDatosTerreno);
-                Console.Write(padDatos("Dot:" + terreno.getNumTipoBitmon("Doti")));
-
-                topDatosTerreno = mapaconsola.getTopDatosTerreno(configMapa, indiceTerreno, 2);
-                Console.SetCursorPosition(leftDatosTerreno, topDatosTerreno);
-                Console.Write(padDatos("Ent:" + terreno.getNumTipoBitmon("Ent")));
-
-                topDatosTerreno = mapaconsola.getTopDatosTerreno(configMapa, indiceTerreno, 3);
-                Console.SetCursorPosition(leftDatosTerreno, topDatosTerreno);
-                Console.Write(padDatos("Gof:" + terreno.getNumTipoBitmon("Gofue")));
-
-                topDatosTerreno = mapaconsola.getTopDatosTerreno(configMapa, indiceTerreno, 4);
-                Console.SetCursorPosition(leftDatosTerreno, topDatosTerreno);
-                Console.Write(padDatos("Tap:" + terreno.getNumTipoBitmon("Taplan")));
-
-                topDatosTerreno = mapaconsola.getTopDatosTerreno(configMapa, indiceTerreno, 5);
-                Console.SetCursorPosition(leftDatosTerreno, topDatosTerreno);
-                Console.Write(padDatos("Wet:" + terreno.getNumTipoBitmon("Wetar")));
-
-                indiceTerreno++;
-            }
-
-            //Vuelve al origen
-            Console.SetCursorPosition(0, 0);
-            Console.SetWindowPosition(0, 0);
-
-            Console.SetCursorPosition(3, 8);
-            Console.Write(("Mapa inicial").PadRight(30));
-            imprimirCantidadBitmonsInicial();
-            Console.SetCursorPosition(0, 0);
-
-            Console.ReadKey();
-
-            //Loop principal de los meses de simulacion.
-            for (int i = 0; i < mesesSimulacion; i++)
-            {
+        public void simularMes(Form_Simulacion sender)
+        {
+           //Loop principal
+        //
                 restarTiempoMensualVidaBitmons();
                 validarMuertePorTiempoVidaBitmons();
                 peleasBitmons();
@@ -124,27 +42,27 @@ namespace Bitmonlandia_Game
                 breedBitmons();
 
                 // Reproduccion de Ents cada 3 meses.
-                if ((i + 1) % 3 == 0)
+                if ((sender.contadorMeses + 1) % 3 == 0)
                 {
                     breedEnts();
                 }
                 cambiarTipoTerrenos();
                 moverBitmons();
-                actualizarTerrenos();
-                actualizarDatosMapaBitmons();
-                Console.SetCursorPosition(3, 8);
+                actualizarTerrenos(sender);
+                actualizarDatosMapaBitmons(sender);
+                
+                sender.cantidadVivos= actualizarCantidadBitmonsMes();
+                sender.cantidadMuertos = paraiso.Bithalla.Count();
 
-                Console.Write(("Mes Actual: " + (i + 1)).PadRight(30));
-                actualizarCantidadBitmonsMes();
-                Console.SetCursorPosition(0, 0);
-
-                Console.ReadKey();
-            }
-
-            Console.Clear();
-
-            mostrarEstadisticas();
+                 if (sender.contadorMeses== mesesSimulacion-1)
+                 {
+                    sender.botonSimular.Text = "Finalizar";
+                    //mostrarEstadisticas();
+                 }
+                
+            //mostrarEstadisticas();
         }
+
 
         public void restarTiempoMensualVidaBitmons()
         {
@@ -395,79 +313,112 @@ namespace Bitmonlandia_Game
         }
 
 
-        public void actualizarTerrenos()
+        public void actualizarTerrenos(Form_Simulacion sender)
         {
-            int indiceTerreno = 0;
-            string tipoTerreno = "";
-            int leftTerreno = 0;
-            int topTerreno = 0;
-
-            foreach (Terreno terreno in region.mapaRegion)
+            sender.grupoMapa.SuspendLayout();
+            foreach (PictureMapa picture in sender.matriz)
             {
-                //Imprime todos los terrenos en el mapa ASCII.
-                tipoTerreno = terreno.getTipo();
-                Console.BackgroundColor = terrenosconsola.getBackGroundColor(tipoTerreno);
-                Console.ForegroundColor = terrenosconsola.getForeGroundColor(tipoTerreno);
-
-                topTerreno = mapaconsola.getTopTerreno(dimensionMapa, indiceTerreno);
-                leftTerreno = mapaconsola.getLeftTerreno(dimensionMapa, indiceTerreno);
-
-                foreach (string line in terrenosconsola.getAsciiTerreno(tipoTerreno))
+                switch (region.mapaRegion[picture.fila, picture.columna].tipo)
                 {
-                    Console.SetCursorPosition(leftTerreno, topTerreno);
-                    Console.Write(line);
-                    topTerreno++;
+                    case "Volcan":
+                        picture.Image = Bitmonlandia_Game.Properties.Resources.volcanDefinitivo;
+                        picture.Refresh();
+                        
+                        break;
+
+                    case "Nieve":
+                        picture.Image = Bitmonlandia_Game.Properties.Resources.nieveDefinitivo;
+                        picture.Refresh();
+                        break;
+
+
+                    case "Vegetacion":
+                        picture.Image = Bitmonlandia_Game.Properties.Resources.vegetacionDefinitivo;
+                        picture.Refresh();
+                        break;
+
+
+                    case "Acuatico":
+                        picture.Image = Bitmonlandia_Game.Properties.Resources.acuaticoDefinitivo;
+                        picture.Refresh();
+                        break;
+
+
+                    case "Desierto":
+                        picture.Image = Bitmonlandia_Game.Properties.Resources.desiertoDefinitivo;
+                        picture.Refresh();
+                        break;
+
+                    default:
+                        break;
+
                 }
-                Console.ResetColor();
-
-                indiceTerreno++;
-
             }
+            sender.grupoMapa.ResumeLayout();
         }
 
 
-        public void actualizarDatosMapaBitmons()
+        public void actualizarDatosMapaBitmons(Form_Simulacion sender)
         {
-            int indiceTerreno = 0;
-            int leftTerreno = 0;
-            int topTerreno = 0;
-            int leftDatosTerreno = 0;
-            int topDatosTerreno = 0;
-
-            foreach (Terreno terreno in region.mapaRegion)
+            switch (sender.simulador.dimensionMapa)
             {
+                case 3:
+                    foreach( Control  c in sender.grupoMapa.Controls)
+                    {
+                        if (c.GetType() == typeof(panelBitmonsConfig1))
+                        {
+                            panelBitmonsConfig1 panel1 =(panelBitmonsConfig1) c;
+                            panel1.labelDorvalo.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Dorvalo").ToString();
+                            panel1.labelDoti.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Doti").ToString();
+                            panel1.labelEnt.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Ent").ToString();
+                            panel1.labelGofue.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Gofue").ToString();
+                            panel1.labelTaplan.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Taplan").ToString();
+                            panel1.labelWetar.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Wetar").ToString();
+                            panel1.Visible = true;
+                        }
+                        
+                    }
+                    
+                    break;
 
-                topTerreno = mapaconsola.getTopTerreno(dimensionMapa, indiceTerreno);
-                leftTerreno = mapaconsola.getLeftTerreno(dimensionMapa, indiceTerreno);
-                leftDatosTerreno = mapaconsola.getLeftDatosTerreno(dimensionMapa, indiceTerreno, 0);
+                case 4:
 
-                //Escribe cantidad de bitmons en terreno por tipo de bitmon.
-                topDatosTerreno = mapaconsola.getTopDatosTerreno(dimensionMapa, indiceTerreno, 0);
-                Console.SetCursorPosition(leftDatosTerreno, topDatosTerreno);
-                Console.Write(padDatos("Dor:" + terreno.getNumTipoBitmon("Dorvalo")));
+                    foreach (Control c in sender.grupoMapa.Controls)
+                    {
+                        if (c.GetType() == typeof(panelBitmonsConfig2))
+                        {
+                            panelBitmonsConfig2 panel1 = (panelBitmonsConfig2)c;
+                            panel1.labelDorvalo.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Dorvalo").ToString();
+                            panel1.labelDoti.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Doti").ToString();
+                            panel1.labelEnt.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Ent").ToString();
+                            panel1.labelGofue.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Gofue").ToString();
+                            panel1.labelTaplan.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Taplan").ToString();
+                            panel1.labelWetar.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Wetar").ToString();
+                            panel1.Visible = true;
+                        }
 
+                    }
 
-                topDatosTerreno = mapaconsola.getTopDatosTerreno(dimensionMapa, indiceTerreno, 1);
-                Console.SetCursorPosition(leftDatosTerreno, topDatosTerreno);
-                Console.Write(padDatos("Dot:" + terreno.getNumTipoBitmon("Doti")));
+                    break;
+                case 5:
+                    foreach (Control c in sender.grupoMapa.Controls)
+                    {
+                        if (c.GetType() == typeof(panelBitmonsConfig3))
+                        {
+                            panelBitmonsConfig3 panel1 = (panelBitmonsConfig3)c;
+                            panel1.labelDorvalo.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Dorvalo").ToString();
+                            panel1.labelDoti.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Doti").ToString();
+                            panel1.labelEnt.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Ent").ToString();
+                            panel1.labelGofue.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Gofue").ToString();
+                            panel1.labelTaplan.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Taplan").ToString();
+                            panel1.labelWetar.Text = sender.simulador.region.mapaRegion[panel1.fila, panel1.columna].getNumTipoBitmon("Wetar").ToString();
+                            panel1.Visible = true;
+                        }
 
-                topDatosTerreno = mapaconsola.getTopDatosTerreno(dimensionMapa, indiceTerreno, 2);
-                Console.SetCursorPosition(leftDatosTerreno, topDatosTerreno);
-                Console.Write(padDatos("Ent:" + terreno.getNumTipoBitmon("Ent")));
-
-                topDatosTerreno = mapaconsola.getTopDatosTerreno(dimensionMapa, indiceTerreno, 3);
-                Console.SetCursorPosition(leftDatosTerreno, topDatosTerreno);
-                Console.Write(padDatos("Gof:" + terreno.getNumTipoBitmon("Gofue")));
-
-                topDatosTerreno = mapaconsola.getTopDatosTerreno(dimensionMapa, indiceTerreno, 4);
-                Console.SetCursorPosition(leftDatosTerreno, topDatosTerreno);
-                Console.Write(padDatos("Tap:" + terreno.getNumTipoBitmon("Taplan")));
-
-                topDatosTerreno = mapaconsola.getTopDatosTerreno(dimensionMapa, indiceTerreno, 5);
-                Console.SetCursorPosition(leftDatosTerreno, topDatosTerreno);
-                Console.Write(padDatos("Wet:" + terreno.getNumTipoBitmon("Wetar")));
-
-                indiceTerreno++;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -484,13 +435,10 @@ namespace Bitmonlandia_Game
                     contadorVivos += 1;
                 }
             }
-
-            Console.SetCursorPosition(25, 8);
-            Console.Write(("Bitmons iniciales: " + (contadorVivos.ToString()).PadRight(30)));
         }
 
 
-        public void actualizarCantidadBitmonsMes()
+        public int actualizarCantidadBitmonsMes()
         {
 
             int contadorVivos = 0;
@@ -502,17 +450,12 @@ namespace Bitmonlandia_Game
                     contadorVivos += 1;
                 }
             }
-
-            Console.SetCursorPosition(25, 8);
-            Console.Write(("Bitmons vivos: " + (contadorVivos.ToString()).PadRight(30)));
-            Console.SetCursorPosition(50, 8);
-            Console.Write(("Bitmons muertos: " + paraiso.Bithalla.Count()).PadRight(30));
-            Console.SetCursorPosition(0, 0);
+            return contadorVivos;
         }
 
-        public void mostrarEstadisticas()
+        public void mostrarEstadisticas(Form_Estadisticas sender)
         {
-
+            
             double contadorDorval = 0;
             double tiempoVidaTotalDorval = 0;
             double tiempoVidaPromedioDorval = 0;
@@ -572,18 +515,6 @@ namespace Bitmonlandia_Game
             double totalBitmonsMuertos = 0;
             double tiempoVidaPromedioBitmon = 0;
             double tasaBrutaMortalidad = 0;
-
-
-            Console.WindowWidth = 100;
-            Console.WindowHeight = 60;
-
-
-            Console.WriteLine(mapaconsola.logo);
-            Console.WriteLine("\n");
-
-            Console.WriteLine("**************************");
-            Console.WriteLine("La simulacion ha terminado");
-            Console.WriteLine("**************************\n");
 
             //Cuenta los vivos
             foreach (Terreno terreno in region.mapaRegion)
@@ -752,82 +683,82 @@ namespace Bitmonlandia_Game
 
             tasaBrutaMortalidad = (totalBitmonsMuertos / (totalBitmonsMuertos + totalBitmonsVivos)) * 100;
 
-            Console.WriteLine("Tiempo vida promedio de Bitmon: " + Math.Round(tiempoVidaPromedioBitmon, 2, MidpointRounding.AwayFromZero) + " meses");
-            Console.WriteLine("***************************************\n");
+            //tiemposdevida
+            sender.tiempoVidaProm = Math.Round(tiempoVidaPromedioBitmon, 2, MidpointRounding.AwayFromZero);
+           
+            sender.tiempoVidaPromDorv = Math.Round(tiempoVidaPromedioDorval, 2, MidpointRounding.AwayFromZero);
+            sender.tiempoVidaPromDoti = Math.Round(tiempoVidaPromedioDoti, 2, MidpointRounding.AwayFromZero);
+            sender.tiempoVidaPromGof=  Math.Round(tiempoVidaPromedioGofue, 2, MidpointRounding.AwayFromZero);
+            sender.tiempoVidaPromEnt = Math.Round(tiempoVidaPromedioEnt, 2, MidpointRounding.AwayFromZero);
+            sender.tiempoVidaPromTap = Math.Round(tiempoVidaPromedioTaplan, 2, MidpointRounding.AwayFromZero);
+            sender.tiempoVidaPromWet = Math.Round(tiempoVidaPromedioWetar, 2, MidpointRounding.AwayFromZero);
 
-            Console.WriteLine("Tiempo vida promedio por especie Bitmon:");
-            Console.WriteLine("***************************************");
-            Console.WriteLine("Dorvalo: " + Math.Round(tiempoVidaPromedioDorval, 2, MidpointRounding.AwayFromZero)+ " meses");
-            Console.WriteLine("Doti: " + Math.Round(tiempoVidaPromedioDoti, 2, MidpointRounding.AwayFromZero) + " meses");
-            Console.WriteLine("Ent: " + Math.Round(tiempoVidaPromedioEnt, 2, MidpointRounding.AwayFromZero) + " meses");
-            Console.WriteLine("Gofue: " + Math.Round(tiempoVidaPromedioGofue, 2, MidpointRounding.AwayFromZero) + " meses");
-            Console.WriteLine("Taplan: " + Math.Round(tiempoVidaPromedioTaplan, 2, MidpointRounding.AwayFromZero) + " meses");
-            Console.WriteLine("Wetar: " + Math.Round(tiempoVidaPromedioWetar, 2, MidpointRounding.AwayFromZero) + " meses \n\n");
+        
+            //Tasas de natalidad
+            sender.tasaBrutaNatDorv = Math.Round(tasaBrutaNatalidadDorval, 2, MidpointRounding.AwayFromZero);
+            sender.tasaBrutaNatDoti = Math.Round(tasaBrutaNatalidadDoti, 2, MidpointRounding.AwayFromZero);
+            sender.tasaBrutaNatEnt = Math.Round(tasaBrutaNatalidadEnt, 2, MidpointRounding.AwayFromZero);
+            sender.tasaBrutaNatGof = Math.Round(tasaBrutaNatalidadGofue, 2, MidpointRounding.AwayFromZero);
+            sender.tasaBrutaNatTap = Math.Round(tasaBrutaNatalidadTaplan, 2, MidpointRounding.AwayFromZero);
+            sender.tasaBrutaNatWet = Math.Round(tasaBrutaNatalidadWetar, 2, MidpointRounding.AwayFromZero);
 
-            Console.WriteLine("Tasa bruta de natalidad por cada especie:");
-            Console.WriteLine("****************************************");
-            Console.WriteLine("Dorvalo: " + Math.Round(tasaBrutaNatalidadDorval, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Dorvalo");
-            Console.WriteLine("Doti: " + Math.Round(tasaBrutaNatalidadDoti, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Doti");
-            Console.WriteLine("Ent: " + Math.Round(tasaBrutaNatalidadEnt, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Ent");
-            Console.WriteLine("Gofue: " + Math.Round(tasaBrutaNatalidadGofue, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Gofue");
-            Console.WriteLine("Taplan: " + Math.Round(tasaBrutaNatalidadTaplan, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Taplan");
-            Console.WriteLine("Wetar: " + Math.Round(tasaBrutaNatalidadWetar, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Wetar\n\n");
-
-            Console.WriteLine("Tasa bruta de mortalidad. " + Math.Round(tasaBrutaMortalidad, 2, MidpointRounding.AwayFromZero) + " por cada 100 Bitmons");
-            Console.WriteLine("***************************************\n");
-
-            Console.WriteLine("Cantidad hijos promedio por cada especie:");
-            Console.WriteLine("****************************************");
-            Console.WriteLine("Dorval: " + Math.Round(hijosPromedioDorval, 2, MidpointRounding.AwayFromZero));
-            Console.WriteLine("Doti: " + Math.Round(hijosPromedioDoti, 2, MidpointRounding.AwayFromZero));
-            Console.WriteLine("Ent: " + Math.Round(hijosPromedioEnt, 2, MidpointRounding.AwayFromZero));
-            Console.WriteLine("Gofue: " + Math.Round(hijosPromedioGofue, 2, MidpointRounding.AwayFromZero));
-            Console.WriteLine("Taplan: " + Math.Round(hijosPromedioTaplan, 2, MidpointRounding.AwayFromZero));
-            Console.WriteLine("Wetar: " + Math.Round(hijosPromedioWetar, 2, MidpointRounding.AwayFromZero) + "\n\n");
+            //Tasa de mortalidad
+            sender.tasaBrutaMort = Math.Round(tasaBrutaMortalidad, 2, MidpointRounding.AwayFromZero);
 
 
-            Console.WriteLine("Especies exintas:");
-            Console.WriteLine("****************");
+            //Hijos
+            sender.cantHijosDorv = Math.Round(hijosPromedioDorval, 2, MidpointRounding.AwayFromZero);
+            sender.cantHijosDoti = Math.Round(hijosPromedioDoti, 2, MidpointRounding.AwayFromZero);
+            sender.cantHijosEnt = Math.Round(hijosPromedioEnt, 2, MidpointRounding.AwayFromZero);
+            sender.cantHijosGof = Math.Round(hijosPromedioGofue, 2, MidpointRounding.AwayFromZero);
+            sender.cantHijosTap = Math.Round(hijosPromedioTaplan, 2, MidpointRounding.AwayFromZero);
+            sender.cantHijosWet = Math.Round(hijosPromedioWetar, 2, MidpointRounding.AwayFromZero);
+            
+
+            //Extintos
             if (cantidadVivosDorval == 0)
             {
-                Console.WriteLine("Dorvalos");
+                sender.extintos+= "Dorvalos \n";
             }
             if (cantidadVivosDoti == 0)
             {
-                Console.WriteLine("Doti");
+                sender.extintos += "Doti \n";
             }
             if (cantidadVivosEnt == 0)
             {
-                Console.WriteLine("Ent");
+                sender.extintos += "Ent \n";
             }
             if (cantidadVivosGofue == 0)
             {
-                Console.WriteLine("Gofue");
+                sender.extintos += "Gofue \n";
             }
             if (cantidadVivosTaplan == 0)
             {
-                Console.WriteLine("Taplan");
+                sender.extintos += "Taplan \n";
             }
             if (cantidadVivosWetar == 0)
             {
-                Console.WriteLine("Wetar");
+                sender.extintos += "Wetar \n";
             }
 
             Console.WriteLine("\n");
 
             Console.WriteLine("Poblacion de Bitmons en Bithalla:");
             Console.WriteLine("****************************************");
-            Console.WriteLine("Dorval: " + (cantidadMuertosDorval) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosDorval / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
-            Console.WriteLine("Doti: " + (cantidadMuertosDoti) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosDoti / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
-            Console.WriteLine("Ent: " + (cantidadMuertosEnt) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosEnt / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
-            Console.WriteLine("Gofue: " + (cantidadMuertosGofue) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosGofue / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
-            Console.WriteLine("Taplan: " + (cantidadMuertosTaplan) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosTaplan / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
-            Console.WriteLine("Wetar: " + (cantidadMuertosWetar) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosWetar / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
+            sender.cantidadMuertosDorv = cantidadMuertosDorval;
+            sender.cantidadMuertosDoti = cantidadMuertosDoti;
+            sender.cantidadMuertosEnt = cantidadMuertosEnt;
+            sender.cantidadMuertosGof = cantidadMuertosGofue;
+            sender.cantidadMuertosTap = cantidadMuertosTaplan;
+            sender.cantidadMuertosWet = cantidadMuertosWetar;
 
-            Console.WriteLine("\n");
+            sender.porcentajeBitDorv = Math.Round(((cantidadMuertosDorval / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero);
+            sender.porcentajeBitDoti = Math.Round(((cantidadMuertosDoti / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero);
+            sender.porcentajeBitEnt = Math.Round(((cantidadMuertosEnt / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero);
+            sender.porcentajeBitGof = Math.Round(((cantidadMuertosGofue / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero);
+            sender.porcentajeBitTap = Math.Round(((cantidadMuertosTaplan / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero);
+            sender.porcentajeBitWet = Math.Round(((cantidadMuertosWetar / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero);
 
-            Console.WriteLine("Presione cualquier tecla, para escribir archivo de estadisticas TXT y cerrar la consola");
-            Console.ReadKey();
             escribirEstadisticasTXT();
 
         }
@@ -900,14 +831,10 @@ namespace Bitmonlandia_Game
 
             FileStream file;
             StreamWriter writer;
-            TextWriter tipoOut = Console.Out;
 
             file = new FileStream(rutaArchivo, FileMode.Create, FileAccess.Write);
             writer = new StreamWriter(file);
-            Console.SetOut(writer);
 
-            Console.WriteLine(mapaconsola.logo);
-            Console.WriteLine("\n\n");
 
             //Cuenta los vivos
             foreach (Terreno terreno in region.mapaRegion)
@@ -1077,80 +1004,81 @@ namespace Bitmonlandia_Game
             }
 
             tasaBrutaMortalidad = (totalBitmonsMuertos / (totalBitmonsMuertos + totalBitmonsVivos)) * 100;
+            writer.WriteLine("ESTADISTICAS SIMULACION");
+            writer.WriteLine("");
+            writer.WriteLine("");
+            writer.WriteLine("Tiempo vida promedio de Bitmon: " + Math.Round(tiempoVidaPromedioBitmon, 2, MidpointRounding.AwayFromZero) + " meses");
+            writer.WriteLine("***************************************\n");
+            writer.WriteLine("");
+            writer.WriteLine("Tiempo vida promedio por especie Bitmon:");
+            writer.WriteLine("***************************************");
+            writer.WriteLine("Dorvalo: " + Math.Round(tiempoVidaPromedioDorval, 2, MidpointRounding.AwayFromZero) + " meses");
+            writer.WriteLine("Doti: " + Math.Round(tiempoVidaPromedioDoti, 2, MidpointRounding.AwayFromZero) + " meses");
+            writer.WriteLine("Ent: " + Math.Round(tiempoVidaPromedioEnt, 2, MidpointRounding.AwayFromZero) + " meses");
+            writer.WriteLine("Gofue: " + Math.Round(tiempoVidaPromedioGofue, 2, MidpointRounding.AwayFromZero) + " meses");
+            writer.WriteLine("Taplan: " + Math.Round(tiempoVidaPromedioTaplan, 2, MidpointRounding.AwayFromZero) + " meses");
+            writer.WriteLine("Wetar: " + Math.Round(tiempoVidaPromedioWetar, 2, MidpointRounding.AwayFromZero) + " meses \n\n");
+            writer.WriteLine("");
+            writer.WriteLine("Tasa bruta de natalidad por cada especie:");
+            writer.WriteLine("****************************************");
+            writer.WriteLine("Dorvalo: " + Math.Round(tasaBrutaNatalidadDorval, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Dorvalo");
+            writer.WriteLine("Doti: " + Math.Round(tasaBrutaNatalidadDoti, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Doti");
+            writer.WriteLine("Ent: " + Math.Round(tasaBrutaNatalidadEnt, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Ent");
+            writer.WriteLine("Gofue: " + Math.Round(tasaBrutaNatalidadGofue, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Gofue");
+            writer.WriteLine("Taplan: " + Math.Round(tasaBrutaNatalidadTaplan, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Taplan");
+            writer.WriteLine("Wetar: " + Math.Round(tasaBrutaNatalidadWetar, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Wetar\n\n");
+            writer.WriteLine("");
+            writer.WriteLine("Tasa bruta de mortalidad. " + Math.Round(tasaBrutaMortalidad, 2, MidpointRounding.AwayFromZero) + " por cada 100 Bitmons");
+            writer.WriteLine("***************************************\n");
+            writer.WriteLine("");
+            writer.WriteLine("Cantidad hijos promedio por cada especie:");
+            writer.WriteLine("****************************************");
+            writer.WriteLine("Dorval: " + Math.Round(hijosPromedioDorval, 2, MidpointRounding.AwayFromZero));
+            writer.WriteLine("Doti: " + Math.Round(hijosPromedioDoti, 2, MidpointRounding.AwayFromZero));
+            writer.WriteLine("Ent: " + Math.Round(hijosPromedioEnt, 2, MidpointRounding.AwayFromZero));
+            writer.WriteLine("Gofue: " + Math.Round(hijosPromedioGofue, 2, MidpointRounding.AwayFromZero));
+            writer.WriteLine("Taplan: " + Math.Round(hijosPromedioTaplan, 2, MidpointRounding.AwayFromZero));
+            writer.WriteLine("Wetar: " + Math.Round(hijosPromedioWetar, 2, MidpointRounding.AwayFromZero) + "\n\n");
 
-            Console.WriteLine("Tiempo vida promedio de Bitmon: " + Math.Round(tiempoVidaPromedioBitmon, 2, MidpointRounding.AwayFromZero) + " meses");
-            Console.WriteLine("***************************************\n");
-
-            Console.WriteLine("Tiempo vida promedio por especie Bitmon:");
-            Console.WriteLine("***************************************");
-            Console.WriteLine("Dorvalo: " + Math.Round(tiempoVidaPromedioDorval, 2, MidpointRounding.AwayFromZero) + " meses");
-            Console.WriteLine("Doti: " + Math.Round(tiempoVidaPromedioDoti, 2, MidpointRounding.AwayFromZero) + " meses");
-            Console.WriteLine("Ent: " + Math.Round(tiempoVidaPromedioEnt, 2, MidpointRounding.AwayFromZero) + " meses");
-            Console.WriteLine("Gofue: " + Math.Round(tiempoVidaPromedioGofue, 2, MidpointRounding.AwayFromZero) + " meses");
-            Console.WriteLine("Taplan: " + Math.Round(tiempoVidaPromedioTaplan, 2, MidpointRounding.AwayFromZero) + " meses");
-            Console.WriteLine("Wetar: " + Math.Round(tiempoVidaPromedioWetar, 2, MidpointRounding.AwayFromZero) + " meses \n\n");
-
-            Console.WriteLine("Tasa bruta de natalidad por cada especie:");
-            Console.WriteLine("****************************************");
-            Console.WriteLine("Dorvalo: " + Math.Round(tasaBrutaNatalidadDorval, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Dorvalo");
-            Console.WriteLine("Doti: " + Math.Round(tasaBrutaNatalidadDoti, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Doti");
-            Console.WriteLine("Ent: " + Math.Round(tasaBrutaNatalidadEnt, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Ent");
-            Console.WriteLine("Gofue: " + Math.Round(tasaBrutaNatalidadGofue, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Gofue");
-            Console.WriteLine("Taplan: " + Math.Round(tasaBrutaNatalidadTaplan, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Taplan");
-            Console.WriteLine("Wetar: " + Math.Round(tasaBrutaNatalidadWetar, 2, MidpointRounding.AwayFromZero) + " hijos por cada 100 Wetar\n\n");
-
-            Console.WriteLine("Tasa bruta de mortalidad. " + Math.Round(tasaBrutaMortalidad, 2, MidpointRounding.AwayFromZero) + " por cada 100 Bitmons");
-            Console.WriteLine("***************************************\n");
-
-            Console.WriteLine("Cantidad hijos promedio por cada especie:");
-            Console.WriteLine("****************************************");
-            Console.WriteLine("Dorval: " + Math.Round(hijosPromedioDorval, 2, MidpointRounding.AwayFromZero));
-            Console.WriteLine("Doti: " + Math.Round(hijosPromedioDoti, 2, MidpointRounding.AwayFromZero));
-            Console.WriteLine("Ent: " + Math.Round(hijosPromedioEnt, 2, MidpointRounding.AwayFromZero));
-            Console.WriteLine("Gofue: " + Math.Round(hijosPromedioGofue, 2, MidpointRounding.AwayFromZero));
-            Console.WriteLine("Taplan: " + Math.Round(hijosPromedioTaplan, 2, MidpointRounding.AwayFromZero));
-            Console.WriteLine("Wetar: " + Math.Round(hijosPromedioWetar, 2, MidpointRounding.AwayFromZero) + "\n\n");
-
-
-            Console.WriteLine("Especies exintas:");
-            Console.WriteLine("****************");
+            writer.WriteLine("");
+            writer.WriteLine("Especies exintas:");
+            writer.WriteLine("****************");
             if (cantidadVivosDorval == 0)
             {
-                Console.WriteLine("Dorvalos");
+                writer.WriteLine("Dorvalos");
             }
             if (cantidadVivosDoti == 0)
             {
-                Console.WriteLine("Doti");
+                writer.WriteLine("Doti");
             }
             if (cantidadVivosEnt == 0)
             {
-                Console.WriteLine("Ent");
+                writer.WriteLine("Ent");
             }
             if (cantidadVivosGofue == 0)
             {
-                Console.WriteLine("Gofue");
+                writer.WriteLine("Gofue");
             }
             if (cantidadVivosTaplan == 0)
             {
-                Console.WriteLine("Taplan");
+                writer.WriteLine("Taplan");
             }
             if (cantidadVivosWetar == 0)
             {
-                Console.WriteLine("Wetar");
+                writer.WriteLine("Wetar");
             }
 
-            Console.WriteLine("\n");
+            writer.WriteLine("");
 
-            Console.WriteLine("Poblacion de Bitmons en Bithalla:");
-            Console.WriteLine("****************************************");
-            Console.WriteLine("Dorval: " + (cantidadMuertosDorval) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosDorval / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
-            Console.WriteLine("Doti: " + (cantidadMuertosDoti) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosDoti / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
-            Console.WriteLine("Ent: " + (cantidadMuertosEnt) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosEnt / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
-            Console.WriteLine("Gofue: " + (cantidadMuertosGofue) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosGofue / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
-            Console.WriteLine("Taplan: " + (cantidadMuertosTaplan) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosTaplan / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
-            Console.WriteLine("Wetar: " + (cantidadMuertosWetar) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosWetar / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
-
-            Console.SetOut(tipoOut);
+            writer.WriteLine("Poblacion de Bitmons en Bithalla:");
+            writer.WriteLine("****************************************");
+            writer.WriteLine("Dorval: " + (cantidadMuertosDorval) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosDorval / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
+            
+            writer.WriteLine("Doti: " + (cantidadMuertosDoti) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosDoti / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
+            writer.WriteLine("Ent: " + (cantidadMuertosEnt) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosEnt / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
+            writer.WriteLine("Gofue: " + (cantidadMuertosGofue) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosGofue / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
+            writer.WriteLine("Taplan: " + (cantidadMuertosTaplan) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosTaplan / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
+            writer.WriteLine("Wetar: " + (cantidadMuertosWetar) + " --> Equivalentes al: " + Math.Round(((cantidadMuertosWetar / totalBitmonsMuertos) * 100), 1, MidpointRounding.AwayFromZero) + " %");
             writer.Close();
             file.Close();
 
@@ -1158,51 +1086,5 @@ namespace Bitmonlandia_Game
 
 
 
-        //private void OnBlinkTimer(object source, ElapsedEventArgs e)
-        //{
-
-        //    int indiceTerreno = 0;
-        //    string tipoTerreno = "";
-        //    int topTerreno = 0;
-        //    int leftTerreno = 0;
-
-        //    foreach (Terreno terreno in this.region.mapaRegion)
-        //    {
-        //        //Imprime todos los terrenos en el mapa ASCII.
-        //        if (flagBlink == false)
-        //        {
-        //            tipoTerreno = "Blanco";
-        //            Console.BackgroundColor = ConsoleColor.Black;
-        //            Console.ForegroundColor = ConsoleColor.White;
-        //            flagBlink = true;
-        //        }
-        //        else
-        //        {
-        //            tipoTerreno = terreno.getTipo();
-        //            Console.BackgroundColor = this.terrenosconsola.getBackGroundColor(tipoTerreno);
-        //            Console.ForegroundColor = this.terrenosconsola.getForeGroundColor(tipoTerreno);
-        //            flagBlink = false;
-        //        }
-
-        //        topTerreno = this.mapaconsola.getTopTerreno(this.dimensionMapa, indiceTerreno);
-        //        leftTerreno = this.mapaconsola.getLeftTerreno(this.dimensionMapa, indiceTerreno);
-
-        //        foreach (string line in this.terrenosconsola.getAsciiTerreno(tipoTerreno))
-        //        {
-        //            Console.SetCursorPosition(leftTerreno, topTerreno);
-        //            Console.Write(line);
-        //            topTerreno++;
-        //        }
-        //        Console.ResetColor();
-
-        //        indiceTerreno++;
-        //    }
-        //}
-
-        private static string padDatos(string dato)
-        {
-            string datos = " " + dato;
-            return datos.PadRight(10);
-        }
     }
 }

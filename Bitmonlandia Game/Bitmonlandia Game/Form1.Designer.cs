@@ -1,6 +1,7 @@
 ﻿namespace Bitmonlandia_Game
 {
     partial class Form1
+
     {
         /// <summary>
         /// Required designer variable.
@@ -32,18 +33,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Ent = new System.Windows.Forms.Label();
             this.Doti = new System.Windows.Forms.Label();
             this.Gofue = new System.Windows.Forms.Label();
             this.Wetar = new System.Windows.Forms.Label();
             this.Taplan = new System.Windows.Forms.Label();
             this.Dorvalo = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -71,7 +72,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(327, 412);
+            this.label2.Location = new System.Drawing.Point(322, 412);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(157, 29);
             this.label2.TabIndex = 1;
@@ -102,72 +103,11 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::Bitmonlandia_Game.Properties.Resources.magikarp;
-            this.pictureBox6.Location = new System.Drawing.Point(373, 218);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(70, 82);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 8;
-            this.pictureBox6.TabStop = false;
-            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::Bitmonlandia_Game.Properties.Resources.pidgeotto__1_;
-            this.pictureBox5.Location = new System.Drawing.Point(219, 188);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(124, 131);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 7;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::Bitmonlandia_Game.Properties.Resources.sudowudoo;
-            this.pictureBox4.Location = new System.Drawing.Point(219, 25);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(111, 100);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 6;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Bitmonlandia_Game.Properties.Resources.ditto;
-            this.pictureBox3.Location = new System.Drawing.Point(373, 60);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(70, 65);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 5;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Bitmonlandia_Game.Properties.Resources.bellsprout;
-            this.pictureBox2.Location = new System.Drawing.Point(496, 218);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(65, 72);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Bitmonlandia_Game.Properties.Resources.charmeleon;
-            this.pictureBox1.Location = new System.Drawing.Point(496, 48);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(88, 77);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
             // Ent
             // 
             this.Ent.AutoSize = true;
             this.Ent.ForeColor = System.Drawing.SystemColors.Control;
-            this.Ent.Location = new System.Drawing.Point(259, 9);
+            this.Ent.Location = new System.Drawing.Point(259, 115);
             this.Ent.Name = "Ent";
             this.Ent.Size = new System.Drawing.Size(23, 13);
             this.Ent.TabIndex = 10;
@@ -177,7 +117,7 @@
             // 
             this.Doti.AutoSize = true;
             this.Doti.ForeColor = System.Drawing.SystemColors.Control;
-            this.Doti.Location = new System.Drawing.Point(391, 44);
+            this.Doti.Location = new System.Drawing.Point(382, 115);
             this.Doti.Name = "Doti";
             this.Doti.Size = new System.Drawing.Size(26, 13);
             this.Doti.TabIndex = 11;
@@ -187,7 +127,7 @@
             // 
             this.Gofue.AutoSize = true;
             this.Gofue.ForeColor = System.Drawing.SystemColors.Control;
-            this.Gofue.Location = new System.Drawing.Point(506, 32);
+            this.Gofue.Location = new System.Drawing.Point(506, 115);
             this.Gofue.Name = "Gofue";
             this.Gofue.Size = new System.Drawing.Size(36, 13);
             this.Gofue.TabIndex = 12;
@@ -222,6 +162,67 @@
             this.Dorvalo.Size = new System.Drawing.Size(44, 13);
             this.Dorvalo.TabIndex = 16;
             this.Dorvalo.Text = "Dorvalo";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::Bitmonlandia_Game.Properties.Resources.magikarp;
+            this.pictureBox6.Location = new System.Drawing.Point(373, 218);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(70, 82);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 8;
+            this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::Bitmonlandia_Game.Properties.Resources.pidgeotto__1_;
+            this.pictureBox5.Location = new System.Drawing.Point(219, 188);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(124, 131);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 7;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Bitmonlandia_Game.Properties.Resources.sudowudoo;
+            this.pictureBox4.Location = new System.Drawing.Point(219, 12);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(111, 100);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 6;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Bitmonlandia_Game.Properties.Resources.ditto;
+            this.pictureBox3.Location = new System.Drawing.Point(373, 47);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(70, 65);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 5;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Bitmonlandia_Game.Properties.Resources.bellsprout;
+            this.pictureBox2.Location = new System.Drawing.Point(496, 218);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(65, 72);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Bitmonlandia_Game.Properties.Resources.charmeleon;
+            this.pictureBox1.Location = new System.Drawing.Point(496, 35);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(88, 77);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
